@@ -4,29 +4,41 @@ module.exports = {
 
   // GET /v1/products
   listProduct: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+    body: {
+      name: Joi.string(),
+      sweetiness: Joi.number().integer().min(1).max(10),
+      isAvailable: Joi.boolean(),
+      color: Joi.string(),
+    },
   },
 
   // POST /v1/products
   createProduct: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+    body: {
+      name: Joi.string().required(),
+      sweetiness: Joi.number().integer().min(1).max(10),
+      isAvailable: Joi.boolean().required(),
+      color: Joi.string(),
+    },
   },
 
   // PATCH /v1/products/:productId
-  updateProduct: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+  updateProduct: { // Update any field
+    body: {
+      name: Joi.string(),
+      sweetiness: Joi.number().integer().min(1).max(10),
+      isAvailable: Joi.boolean(),
+      color: Joi.string(),
+    },
+    params: {
+      productId: Joi.number().integer().required()
+    },
   },
 
   // DELETE /v1/products/:productId
   removeProduct: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+    params: {
+      productId: Joi.number().integer().required()
+    },
   },
 };

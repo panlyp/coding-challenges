@@ -4,14 +4,16 @@ const controller = require('../../controllers/productStock.controller');
 
 const router = express.Router();
 
+const validation = require("../../validations/productStock.validation");
+
 router
   .route('/')
-  .get(controller.list)
-  .post(controller.create);
+  .get(validate(validation.listProductStock), controller.list)
+  .post(validate(validation.createProductStock), controller.create);
 
 router
   .route('/:productStockId')
-  .patch(controller.update)
-  .delete(controller.remove);
+  .patch(validate(validation.updateProductStock), controller.update)
+  .delete(validate(validation.removeProductStock), controller.remove);
 
 module.exports = router;

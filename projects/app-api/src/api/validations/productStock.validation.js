@@ -4,29 +4,43 @@ module.exports = {
 
   // GET /v1/ProductStocks
   listProductStock: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+    body: {
+      productId: Joi.string(), // int4 in db?
+      originalAmount: Joi.number().min(0),
+      amount: Joi.number().min(0),
+      importedAt: Joi.date(),
+      expiredAt: Joi.date(),
+    },
   },
 
   // POST /v1/ProductStocks
   createProductStock: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+    body: {
+      productId: Joi.string().required(), // int4 in db?
+      originalAmount: Joi.number().min(0).required(),
+      amount: Joi.number().min(0).required(),
+      importedAt: Joi.date().required(),
+      expiredAt: Joi.date(),
+    },
   },
 
   // PATCH /v1/ProductStocks/:ProductStockId
   updateProductStock: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+    body: {
+      originalAmount: Joi.number().min(0),
+      amount: Joi.number().min(0),
+      importedAt: Joi.date(),
+      expiredAt: Joi.date(),
+    },
+    params: {
+      productId: Joi.string().required(), // int4 in db?
+    },
   },
 
   // DELETE /v1/ProductStocks/:ProductStockId
   removeProductStock: {
-    /*
-     *  WRITE YOUR CODE HERE
-     */
+    params: {
+      productId: Joi.string().required(), // int4 in db?
+    },
   },
 };
