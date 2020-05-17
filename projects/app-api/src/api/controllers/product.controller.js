@@ -23,7 +23,20 @@ exports.create = async (req, res, next) => {
 exports.list = async (req, res, next) => {
   try {
     const products = await PG.Product.list(req.query);
-    const transformedProducts = products.map(product => product.transform());
+    // filter isAvailable
+    let filteredProducts = [];
+    const isAvailable = (req.query.isAvailable === 'true'); // convert string into boolean
+    if (isAvailable) {
+      products.forEach((item) => {
+        if (item.isAvailable === isAvailable) {
+          filteredProducts.push(item);
+        }
+      });
+    } else {
+      filteredProducts = products;
+    }
+
+    const transformedProducts = filteredProducts.map(product => product.transform());
     res.json(transformedProducts);
   } catch (error) {
     next(error);
@@ -42,7 +55,7 @@ exports.update = async (req, res, next) => {
     const [, updatedProduct] = await PG.Product.update(
       updateParams,
       {
-        where: { 
+        where: {
           id: productId,
         },
         returning: true,

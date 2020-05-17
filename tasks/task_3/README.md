@@ -8,9 +8,9 @@
 Tests are done by using the Paw app: [see list](paw.png)
 
 ### Mission 2
-  - 
-  - **Bonus**: Allow filtering both `isAvailable` and `isExpired` for a single api call.
-
+  - The filtering logic is added in the listing API in `product.controller.js`.
+  - My approach is to compare the value in query with that from the product. 
+  - ~~**Bonus**: Allow filtering both `isAvailable` and `isExpired` for a single api call.~~
 
 ### Mission 3
   - **Bonus**: Group the summary results by color.
