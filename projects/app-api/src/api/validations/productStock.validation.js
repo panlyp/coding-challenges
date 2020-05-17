@@ -33,14 +33,14 @@ module.exports = {
       expiredAt: Joi.date(),
     },
     params: {
-      productId: Joi.string().required(), // int4 in db?
+      productStockId: Joi.string().required(), // int4 in db?
     },
   },
 
   // DELETE /v1/ProductStocks/:ProductStockId
   removeProductStock: {
     params: {
-      productId: Joi.string().required(), // int4 in db?
+      productStockId: Joi.string().required(), // int4 in db?
     },
   },
 };
